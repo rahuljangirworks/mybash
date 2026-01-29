@@ -1,121 +1,80 @@
-# ChrisTitusTech's `.bashrc` Configuration
+# Rahul's MyBash Configuration
 
-## Overview
+> 🏜️ **Fork of [ChrisTitusTech/mybash](https://github.com/ChrisTitusTech/mybash)** with Rajasthani-inspired dark pastel theme
 
-This repository provides a comprehensive `.bashrc` configuration along with supporting scripts and configuration files to enhance your terminal experience in Unix-like operating systems. It configures the shell session by setting up aliases, defining functions, customizing the prompt, and more, significantly improving the terminal's usability and power.
+![Rajasthani Theme Preview](https://img.shields.io/badge/Theme-Rajasthani%20Desert-9A7B5B?style=for-the-badge)
 
-## Table of Contents
+## ✨ What's Different?
 
-- [Installation](#installation)
-- [Uninstallation](#uninstallation)
-- [Configuration Files](#configuration-files)
-  - [.bashrc](#bashrc)
-  - [starship.toml](#starshiptoml)
-  - [config.jsonc](#configjsonc)
-- [Key Features](#key-features)
-- [Advanced Functions](#advanced-functions)
-- [System-Specific Configurations](#system-specific-configurations)
-- [Conclusion](#conclusion)
+This fork includes a custom **Rajasthani Desert** color theme designed for dark terminals:
 
-## Installation
+| Element | Color | Hex |
+|---------|-------|-----|
+| Username/Python | Dark Gray | `#3B4252` |
+| Directory | Medium Gray | `#434C5E` |
+| Git Branch/Status | Dusty Bronze | `#9A7B5B` |
+| Languages | Copper | `#B87333` |
+| Docker Context | Antique Gold | `#C9A66B` |
+| Time | Deep Mauve | `#6B4E4E` |
 
-To install the `.bashrc` configuration, execute the following commands in your terminal:
+## 📦 Installation
 
-```sh
-git clone --depth=1 https://github.com/dacrab/mybash.git
-cd mybash
-./setup.sh
+### Quick Install (via Linutil)
+
+If you're using [my Linutil fork](https://github.com/rahuljangirworks/linutil):
+
+1. Run Linutil
+2. Navigate to **"Rahul's Scripts"** tab
+3. Select **"Rahul's MyBash Setup"**
+
+### Manual Install
+
+```bash
+git clone https://github.com/rahuljangirworks/mybash.git ~/.local/share/mybash
+cd ~/.local/share/mybash
+
+# Backup existing config
+mv ~/.bashrc ~/.bashrc.bak
+
+# Link configs
+ln -sf ~/.local/share/mybash/.bashrc ~/.bashrc
+ln -sf ~/.local/share/mybash/starship.toml ~/.config/starship.toml
+cp ~/.local/share/mybash/config.jsonc ~/.config/fastfetch/config.jsonc
+
+# Reload shell
+exec bash
 ```
 
-The `setup.sh` script automates the installation process by:
+## 📁 Files
 
-- Creating necessary directories (`linuxtoolbox/mybash`)
-- Cloning the repository
-- Installing dependencies (bash-completion, neovim, starship, fzf, zoxide)
-- Installing the MesloLGS Nerd Font required for the prompt
-- Linking configuration files (`.bashrc` and `starship.toml`) to your home directory
-- Setting up additional utilities like `fastfetch`
+| File | Purpose |
+|------|---------|
+| `.bashrc` | Main bash configuration |
+| `.bashrc.local` | Personal customizations (safe from upstream conflicts) |
+| `starship.toml` | Starship prompt with Rajasthani colors |
+| `config.jsonc` | Fastfetch config with matching theme |
 
-Ensure you have the required permissions and a supported package manager before running the script.
+## 🔄 Syncing with Upstream
 
-## Uninstallation
-
-To uninstall the `.bashrc` configuration, run:
-
-```sh
-cd mybash
-chmod +x uninstall.sh
-./uninstall.sh
+```bash
+cd ~/.local/share/mybash
+git fetch upstream
+git rebase upstream/main
+git push origin main --force-with-lease
 ```
 
-The `uninstall.sh` script reverses the installation process by:
+## 🎨 Customization
 
-- Removing installed dependencies
-- Uninstalling fonts
-- Removing symbolic links to configuration files
-- Deleting the `linuxtoolbox` directory
-- Cleaning up additional utilities like `starship`, `fzf`, and `zoxide`
+Add personal aliases and functions to `.bashrc.local` - this file is safe from merge conflicts:
 
-After running the script, it's recommended to restart your shell to apply the changes.
+```bash
+# Example ~/.bashrc.local
+alias myalias='my-command'
+export MY_VAR="value"
+```
 
-## Configuration Files
+## 🙏 Credits
 
-### `.bashrc`
-
-The `.bashrc` file defines aliases, functions, and environment variables to enhance your shell experience. Key features include:
-
-- **Aliases**: Shortcuts for common commands (e.g., `alias cp='cp -i'`)
-- **Functions**: Custom functions for tasks like extracting archives and copying files with progress
-
-### `starship.toml`
-
-The `starship.toml` file configures the [Starship](https://starship.rs/) prompt, providing a highly customizable and informative shell prompt. It includes:
-
-- **Theme Settings**: Defines colors and symbols for different prompt segments
-- **Module Configurations**: Customizes modules like `python`, `git`, `docker_context`, and various programming languages
-- **Format Customization**: Structures the layout and truncation of paths for a cleaner look
-
-### `config.jsonc`
-
-The `config.jsonc` file configures [fastfetch](https://github.com/AlexRogalskiy/fastfetch), a system information tool. It includes:
-
-- **Logo and Display Settings**: Customizes the appearance of system logos and separators
-- **Modules**: Defines which system information modules to display, such as CPU, GPU, OS, kernel, and uptime
-- **Custom Sections**: Adds custom formatted sections for hardware and software information
-
-## Key Features
-
-1. **Aliases and Functions**
-   - Shortcuts for common commands
-   - Custom functions for complex operations (e.g., extracting archives, copying with progress)
-
-2. **Prompt Customization and History Management**
-   - Configures PROMPT_COMMAND for automatic history saving
-   - Manages history file size and handles duplicates
-
-3. **Enhancements and Utilities**
-   - Improves command output readability with colors
-   - Introduces safer file operations (e.g., using `trash` instead of `rm`)
-   - Integrates Zoxide for easy directory navigation
-
-4. **Installation and Configuration Helpers**
-   - Auto-installs necessary utilities based on system type
-   - Provides functions to edit important configuration files
-
-## Advanced Functions
-
-- System information display
-- Networking utilities (e.g., IP address checks)
-- Resource monitoring tools
-
-## System-Specific Configurations
-
-- Editor settings (NeoVim as default)
-- Conditional aliases based on system type
-- Package manager-specific commands
-
-## Conclusion
-
-This `.bashrc` configuration offers a powerful and customizable terminal environment suitable for various Unix-like systems. It enhances productivity through smart aliases, functions, and integrated tools while maintaining flexibility for system-specific needs. Whether you're a developer, system administrator, or power user, this setup aims to make your terminal experience more efficient and enjoyable.
-
-For any issues, suggestions, or contributions, please open an issue or pull request in this repository. We welcome community involvement to make this configuration even better!
+- Original: [ChrisTitusTech/mybash](https://github.com/ChrisTitusTech/mybash)
+- Prompt: [Starship](https://starship.rs/)
+- System Info: [Fastfetch](https://github.com/fastfetch-cli/fastfetch)
